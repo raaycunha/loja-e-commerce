@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/600.css";
+
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+
+@theme {
+  --font-cormorant: "Cormorant Garamond", serif;
+  --font-poppins: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-cormorant);
+}
+
+span,
+p {
+  font-family: var(--font-poppins);
+}
