@@ -57,7 +57,10 @@ const Cart = () => {
 
   const discountValue = discount + cupomDiscount;
 
-  const finalPrice = priceTotal - cupomDiscount;
+  const finalPrice =
+    priceTotal > 190
+      ? priceTotal - cupomDiscount
+      : priceTotal - cupomDiscount + 30;
   return (
     <Container>
       <main className="py-7 md:py-12">
@@ -189,6 +192,7 @@ const Cart = () => {
                             handleChangeQuantity(item.cartId, "up")
                           }
                           type="button"
+                          disabled={item.quantity === 5}
                           aria-label="Aumentar quantidade"
                           className="flex h-full w-7 items-center justify-center text-gray-600 cursor-pointer hover:text-gray-800"
                         >
@@ -204,7 +208,7 @@ const Cart = () => {
                       </span>
 
                       <span className="font-poppins text-sm font-semibold text-[#202020]">
-                        R$ {item.price}
+                        R$ {(parsePrice(item.price) * item.quantity).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -304,7 +308,13 @@ const Cart = () => {
 
               <div className="flex items-center justify-between font-poppins text-sm">
                 <span className="text-gray-500">Frete</span>
-                <span className="font-medium">{}</span>
+                <span className="font-medium">
+                  {finalPrice > 190
+                    ? "Grátis"
+                    : finalPrice <= 0
+                      ? "R$ 0,00"
+                      : "R$ 30,00"}
+                </span>
               </div>
 
               <div className="border-t border-gray-200 pt-5">

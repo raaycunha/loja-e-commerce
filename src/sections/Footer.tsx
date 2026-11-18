@@ -174,7 +174,7 @@ const Footer = () => {
 
             <nav aria-label="Coleções" className="flex flex-col gap-3">
               {footerLinks.shop.map((item) => (
-                <a href="#" className={linkStyle}>
+                <a key={item.label} href="#" className={linkStyle}>
                   {item.label}
                 </a>
               ))}
@@ -189,7 +189,7 @@ const Footer = () => {
 
             <nav aria-label="Institucional" className="flex flex-col gap-3">
               {footerLinks.institutional.map((item) => (
-                <a href="#" className={linkStyle}>
+                <a key={item.label} href="#" className={linkStyle}>
                   {item.label}
                 </a>
               ))}
@@ -204,7 +204,7 @@ const Footer = () => {
 
             <nav aria-label="Ajuda" className="flex flex-col gap-3">
               {footerLinks.help.map((item) => (
-                <a href="#" className={linkStyle}>
+                <a key={item.label} href="#" className={linkStyle}>
                   {item.label}
                 </a>
               ))}

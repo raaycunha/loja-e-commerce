@@ -236,13 +236,14 @@ const CategoryLayout = ({
               <h3 className="font-poppins! text-sm font-semibold">Tamanho</h3>
 
               <div className="mt-3 flex flex-wrap gap-2">
-                {(["P", "M", "G"] as const).map((size) => (
-                  <button
-                    key={size}
-                    type="button"
-                    onClick={() => toggleSize(size)}
-                    aria-pressed={selectedSizes.includes(size)}
-                    className={`
+                {category !== "accessories" ? (
+                  (["P", "M", "G"] as const).map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => toggleSize(size)}
+                      aria-pressed={selectedSizes.includes(size)}
+                      className={`
                     flex
                     h-8
                     min-w-8
@@ -266,10 +267,37 @@ const CategoryLayout = ({
                         : "border-gray-300 hover:border-black"
                     }
                   `}
+                    >
+                      {size}
+                    </button>
+                  ))
+                ) : (
+                  <button
+                    key="U"
+                    type="button"
+                    aria-pressed={true}
+                    className="
+                    flex
+                    h-8
+                    min-w-8
+                    items-center
+                    justify-center
+                    rounded-md
+                    border
+                    px-2
+                    font-poppins
+                    text-xs
+                    cursor-pointer
+                    border-black 
+                    bg-black 
+                    text-white
+                    transition-colors
+                    duration-300
+                  "
                   >
-                    {size}
+                    U
                   </button>
-                ))}
+                )}
               </div>
             </div>
 

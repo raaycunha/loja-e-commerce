@@ -22,7 +22,7 @@ const ProductDetails = () => {
   const { slug } = useParams<{ slug: string }>();
 
   const [quantity, setQuantity] = useState<number>(1);
-  const [selectedSize, setSelectedSize] = useState<SizeType | null>(null);
+  const [selectedSize, setSelectedSize] = useState<SizeType>("U");
   const loading = quantity >= 1 && selectedSize !== null;
 
   const products = Object.values(productList).flat();
@@ -163,16 +163,17 @@ const ProductDetails = () => {
               </h3>
 
               <div className="flex gap-2">
-                {sizes.map((size) => (
-                  <button
-                    key={size}
-                    type="button"
-                    onClick={() => {
-                      if (!product.tamAvailable.includes(size)) return;
-                      setSelectedSize(size);
-                    }}
-                    aria-pressed={selectedSize === size}
-                    className={`flex h-11 w-12 items-center justify-center rounded-md border font-poppins! text-sm transition-colors 
+                {product.tamAvailable !== "U" ? (
+                  sizes.map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => {
+                        if (!product.tamAvailable.includes(size)) return;
+                        setSelectedSize(size);
+                      }}
+                      aria-pressed={selectedSize === size}
+                      className={`flex h-11 w-12 items-center justify-center rounded-md border font-poppins! text-sm transition-colors 
                       ${
                         selectedSize === size
                           ? "border-[#202020] bg-[#202020] text-white"
@@ -183,10 +184,33 @@ const ProductDetails = () => {
                           ? "cursor-pointer"
                           : "opacity-30 cursor-not-allowed hover:border-gray-300"
                       }`}
+                    >
+                      {size}
+                    </button>
+                  ))
+                ) : (
+                  <button
+                    key="U"
+                    type="button"
+                    aria-pressed={true}
+                    className="
+                      flex
+                      h-11
+                      w-12
+                      items-center 
+                      justify-center 
+                      rounded-md 
+                      border 
+                      font-poppins! 
+                      text-sm 
+                      border-[#202020] 
+                      bg-[#202020] 
+                      text-white
+                    "
                   >
-                    {size}
+                    U
                   </button>
-                ))}
+                )}
               </div>
             </div>
 
