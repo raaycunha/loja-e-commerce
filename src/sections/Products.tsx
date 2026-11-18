@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { BsCart3, BsStarFill } from "react-icons/bs";
+import { BsCart3 } from "react-icons/bs";
 
 import type { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import "swiper/css";
 
+import ProductRating from "../components/ProductRating";
 import { productList } from "../utils/AllProducts";
 
 const featuredProducts = Object.values(productList)
@@ -58,24 +59,21 @@ const Products = () => {
             slidesPerView: 1.15,
             spaceBetween: 10,
           },
-
           480: {
             slidesPerView: 2.3,
             spaceBetween: 12,
           },
-
           768: {
             slidesPerView: 3.15,
             spaceBetween: 16,
           },
-
           1024: {
             slidesPerView: 4.15,
             spaceBetween: 20,
           },
         }}
       >
-        {/* Produtos embaralhados */}
+        {/* PRODUTOS EM DESTAQUE */}
         {featuredProducts.map((item) => (
           <SwiperSlide key={item.slug} className="h-auto!">
             <Link to={`/produto/${item.slug}`} className="block h-full">
@@ -91,6 +89,7 @@ const Products = () => {
                   bg-white
                 "
               >
+                {/* IMAGEM */}
                 <img
                   src={`/images/products/${item.img}`}
                   alt={item.name}
@@ -102,25 +101,22 @@ const Products = () => {
                 />
 
                 <div className="flex flex-1 flex-col gap-1 p-2">
-                  <h3 className="font-bold text-base sm:text-lg">
+                  {/* NOME */}
+                  <h3 className="text-base font-bold sm:text-lg">
                     {item.name}
                   </h3>
 
+                  {/* CATEGORIA */}
                   <span className="text-[0.65rem] text-gray-500 sm:text-xs">
                     {item.category}
                   </span>
 
-                  <div className="flex items-center gap-0.5 text-[#E8B400]">
-                    {Array.from({
-                      length: item.starQuantity,
-                    }).map((_, index) => (
-                      <BsStarFill
-                        key={index}
-                        className="text-[0.55rem] sm:text-xs"
-                      />
-                    ))}
+                  {/* AVALIAÇÕES */}
+                  <div className="my-1">
+                    <ProductRating ratings={item.ratings} compact />
                   </div>
 
+                  {/* PREÇO E ÍCONE */}
                   <div className="mt-auto flex items-end justify-between gap-2">
                     <div className="flex flex-wrap items-center gap-1">
                       <span className="text-xs font-semibold sm:text-sm">
@@ -132,7 +128,7 @@ const Products = () => {
                       </span>
                     </div>
 
-                    {/* Ícone visual para abrir o produto */}
+                    {/* ÍCONE PARA ABRIR O PRODUTO */}
                     <span
                       className="
                         flex

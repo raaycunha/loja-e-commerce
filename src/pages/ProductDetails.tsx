@@ -5,13 +5,12 @@ import {
   RotateCcw,
   ShieldCheck,
   ShoppingBag,
-  Star,
   Truck,
 } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import Container from "../components/Container";
+import ProductRating from "../components/ProductRating";
 import { useCartContext } from "../context/Cart/useCartContext";
 import { productList, type SizeType } from "../utils/AllProducts";
 
@@ -112,22 +111,8 @@ const ProductDetails = () => {
             </h1>
 
             {/* AVALIAÇÃO */}
-            <div className="mt-4 flex items-center gap-2">
-              <div className="flex items-center gap-0.5 text-[#E8B400]">
-                {Array.from({
-                  length: product.starQuantity,
-                }).map((_, index) => (
-                  <Star
-                    key={index}
-                    size={14}
-                    fill="currentColor"
-                    strokeWidth={1}
-                  />
-                ))}
-              </div>
-              <span className="font-poppins text-xs text-gray-500">
-                {product.starQuantity} de 5 estrelas
-              </span>
+            <div className="mt-4">
+              <ProductRating ratings={product.ratings} />
             </div>
 
             {/* PREÇO */}

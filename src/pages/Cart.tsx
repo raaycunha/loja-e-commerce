@@ -309,11 +309,13 @@ const Cart = () => {
               <div className="flex items-center justify-between font-poppins text-sm">
                 <span className="text-gray-500">Frete</span>
                 <span className="font-medium">
-                  {finalPrice > 190
-                    ? "Grátis"
-                    : finalPrice <= 0
-                      ? "R$ 0,00"
-                      : "R$ 30,00"}
+                  {productsToBuy.length < 1
+                    ? "--"
+                    : finalPrice > 190
+                      ? "Grátis"
+                      : finalPrice <= 0
+                        ? "R$ 0,00"
+                        : "R$ 30,00"}
                 </span>
               </div>
 
@@ -324,23 +326,29 @@ const Cart = () => {
                   </span>
 
                   <span className="font-poppins text-xl font-semibold text-[#202020]">
-                    {finalPrice.toLocaleString("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
+                    {productsToBuy.length < 1
+                      ? "R$ 0,00"
+                      : finalPrice.toLocaleString("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        })}
                   </span>
                 </div>
               </div>
 
               {/* CUPOM */}
               <div className="border-t border-gray-200 pt-5">
-                <label className="mb-3 flex items-center gap-2 font-poppins text-xs font-semibold">
+                <label
+                  htmlFor="cupom"
+                  className="mb-3 flex items-center gap-2 font-poppins text-xs font-semibold"
+                >
                   <Tag size={15} strokeWidth={1.5} />
                   Cupom de desconto
                 </label>
 
                 <div className="flex gap-2">
                   <input
+                    id="cupom"
                     type="text"
                     placeholder="PRIMEIRACOMPRA"
                     value={cupom}

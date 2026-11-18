@@ -1,5 +1,7 @@
 import type { SizeType } from "../utils/AllProducts";
 
+export type RatingDistribution = [number, number, number, number, number];
+
 export interface ProductItem {
   id: number;
   img: string;
@@ -7,6 +9,7 @@ export interface ProductItem {
   name: string;
   category: string;
   starQuantity: number;
+  ratings: RatingDistribution;
   lastPrice: string;
   price: string;
   tamAvailable: SizeType | SizeType[];
