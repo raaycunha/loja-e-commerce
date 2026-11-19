@@ -72,6 +72,7 @@ const Banners = () => {
               to="novidades"
               className={`
                 ${classButton}
+                h-10!
                 mt-4
                 inline-flex
                 bg-[#202020]
@@ -81,7 +82,7 @@ const Banners = () => {
                 hover:-translate-y-0.5
                 hover:bg-black
 
-                lg:text-lg
+                lg:text-base
               `}
             >
               Ver Novidades <BsArrowRight />
@@ -155,6 +156,7 @@ const Banners = () => {
               to="ofertas"
               className={`
                 ${classButton}
+                h-10!
                 mt-4
                 inline-flex
                 bg-[#202020]
@@ -165,7 +167,7 @@ const Banners = () => {
                 hover:-translate-y-0.5
                 hover:bg-black
 
-                lg:text-lg
+                lg:text-base
               `}
             >
               Ver Ofertas <BsArrowRight />

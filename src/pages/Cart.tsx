@@ -11,11 +11,12 @@ import {
   Truck,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import { useCartContext } from "../context/Cart/useCartContext";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const {
     productsToBuy,
     handleFinishBuy,
@@ -123,9 +124,10 @@ const Cart = () => {
                     <div className="flex min-w-0 gap-4">
                       <div className="h-32 w-24 shrink-0 overflow-hidden rounded-md bg-[#F5F3F0] sm:h-36 sm:w-28">
                         <img
+                          onClick={() => navigate(`/produto/${item.slug}`)}
                           src={`/images/products/${item.img}`}
                           alt={item.name}
-                          className="h-full w-full object-cover"
+                          className="h-full w-full object-cover cursor-pointer transition-all duration-400 hover:translate-y-1 hover:scale-[1.05] hover:opacity-90"
                         />
                       </div>
 
@@ -134,7 +136,10 @@ const Cart = () => {
                           {item.category}
                         </span>
 
-                        <h2 className="mt-1 font-serif text-base leading-snug text-[#202020] sm:text-lg">
+                        <h2
+                          onClick={() => navigate(`/produto/${item.slug}`)}
+                          className="mt-1 font-serif text-base leading-snug text-[#202020] cursor-pointer sm:text-lg"
+                        >
                           {item.name}
                         </h2>
 

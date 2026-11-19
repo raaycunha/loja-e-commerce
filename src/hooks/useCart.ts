@@ -15,10 +15,7 @@ export const useCart = () => {
   const navigate = useNavigate();
 
   // Quantidade total de unidades no carrinho
-  const cartQuantity = productsToBuy.reduce(
-    (total, item) => total + item.quantity,
-    0,
-  );
+  const cartQuantity = productsToBuy.length;
 
   // Adicionar produto
   const addProductCart = (
