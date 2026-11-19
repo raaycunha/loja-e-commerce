@@ -6,6 +6,8 @@ A **AVELA** é uma plataforma de e-commerce demonstrativa voltada ao segmento de
 
 O projeto busca reproduzir a experiência visual e de navegação de uma loja virtual real, combinando uma identidade visual minimalista com uma interface organizada e acessível.
 
+🔗 **[Acessar o site](https://clinica-odontologica-swart.vercel.app/)**
+
 > **Projeto demonstrativo:** Esta loja foi desenvolvida exclusivamente para fins de estudo, prática e composição de portfólio profissional. Não são realizadas vendas ou transações financeiras reais.
 
 ---
