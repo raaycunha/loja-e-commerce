@@ -20,6 +20,10 @@ interface ContextType {
   handleRemoveProduct: (cartId: string) => void;
 
   handleChangeQuantity: (cartId: string, upOrDown: UpDownType) => void;
+
+  showPopUp: boolean;
+
+  changeShowPopUp: (value: boolean) => void;
 }
 
 export const CartContext = createContext<ContextType | null>(null);

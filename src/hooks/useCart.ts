@@ -14,6 +14,8 @@ export const useCart = () => {
 
   const navigate = useNavigate();
 
+  const [showPopUp, setShowPopUp] = useState<boolean>(false);
+
   // Quantidade total de unidades no carrinho
   const cartQuantity = productsToBuy.length;
 
@@ -85,6 +87,12 @@ export const useCart = () => {
   const handleFinishBuy = () => {
     if (productsToBuy.length === 0) return;
 
+    const userLogin = storage.get("user-login");
+    if (userLogin !== true) {
+      setShowPopUp(true);
+      return;
+    }
+
     setProductsToBuy([]);
     navigate("/");
   };
@@ -100,5 +108,7 @@ export const useCart = () => {
     handleRemoveProduct,
     handleChangeQuantity,
     handleFinishBuy,
+    showPopUp,
+    changeShowPopUp: setShowPopUp,
   };
 };

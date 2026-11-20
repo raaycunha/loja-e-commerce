@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { storage } from "../utils/storage";
 
 export const useLogin = () => {
@@ -10,21 +9,28 @@ export const useLogin = () => {
   const [remember, setRemember] = useState<boolean>(
     () => storage.get<string>("email") !== null,
   );
-  const navigate = useNavigate();
+  const [userLogin, setUserLogin] = useState<boolean>(
+    () => storage.get<string>("user-login") === "true",
+  );
   const handleLogin = () => {
     if (email.trim() === "" || password.trim() === "") return;
     if (remember) storage.set("email", email);
     else storage.remove("email");
+
+    storage.set("user-login", true);
+    setUserLogin(true);
     setPassword("");
-    navigate("/");
+
+    return true;
   };
   return {
     email,
-    changeEmail: setEmail,
     password,
-    changePassword: setPassword,
     remember,
+    changeEmail: setEmail,
+    changePassword: setPassword,
     changeRemember: setRemember,
     handleLogin,
+    userLogin,
   };
 };
