@@ -2,7 +2,7 @@ import Container from "../components/Container";
 import Banners from "../sections/Banners";
 import Category from "../sections/Category";
 import Hero from "../sections/Hero";
-import Products from "../sections/Products";
+import ProductsScroll from "../sections/ProductsScroll";
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
       <Container>
         <Hero />
         <Category />
-        <Products />
+        <ProductsScroll />
         <Banners />
       </Container>
     </div>

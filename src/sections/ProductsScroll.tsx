@@ -20,32 +20,16 @@ const Products = () => {
 
   return (
     <section id="produtos" className="flex flex-col gap-4 pt-12">
-      <div className="flex items-end justify-between">
-        <h2
-          className="
+      <h2
+        className="
             text-xl
             font-semibold
             md:text-2xl
             lg:text-4xl
           "
-        >
-          Destaques da Semana
-        </h2>
-
-        <Link
-          to="/novidades"
-          className="
-            hidden
-            text-sm
-            text-gray-500
-            transition-colors
-            hover:text-black
-            lg:block
-          "
-        >
-          Ver todos os produtos →
-        </Link>
-      </div>
+      >
+        Destaques da Semana
+      </h2>
 
       <Swiper
         className="w-full"
@@ -102,7 +86,7 @@ const Products = () => {
 
                 <div className="flex flex-1 flex-col gap-1 p-2">
                   {/* NOME */}
-                  <h3 className="text-base font-bold sm:text-lg">
+                  <h3 className="text-base font-bold xl:text-lg">
                     {item.name}
                   </h3>
 
