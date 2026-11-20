@@ -1,4 +1,5 @@
-import { ChevronRight, SlidersHorizontal } from "lucide-react";
+import { ChevronRight, SlidersHorizontal, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useFilter, {
   type OrderType,
@@ -47,6 +48,27 @@ const CategoryLayout = ({
 
   const classColors =
     "h-6 w-6 rounded-full cursor-pointer transition-all duration-400 hover:scale-[1.05] hover:opacity-75";
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+
+  useEffect(() => {
+    if (!mobileFilterOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileFilterOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [mobileFilterOpen]);
   return (
     <div className="flex flex-col gap-8">
       <Container>
@@ -173,6 +195,10 @@ const CategoryLayout = ({
 
         {/* MOBILE - Botão filtro */}
         <button
+          onClick={() => setMobileFilterOpen(true)}
+          aria-expanded={mobileFilterOpen}
+          aria-controls="mobile-filter-panel"
+          aria-haspopup="dialog"
           type="button"
           className="
           flex
@@ -197,6 +223,22 @@ const CategoryLayout = ({
           Filtrar e ordenar
         </button>
 
+        {/* OVERLAY MOBILE */}
+        <div
+          className={`
+            fixed inset-0 z-40 bg-black/40
+            transition-opacity duration-300
+            md:hidden
+            ${
+              mobileFilterOpen
+                ? "visible opacity-100"
+                : "invisible pointer-events-none opacity-0"
+            }
+          `}
+          onClick={() => setMobileFilterOpen(false)}
+          aria-hidden="true"
+        />
+
         {/* FILTROS + PRODUTOS */}
         <section
           className="
@@ -212,23 +254,48 @@ const CategoryLayout = ({
         >
           {/* SIDEBAR FILTROS */}
           <aside
-            className="
-            hidden
-            h-max
-            overflow-hidden
-            rounded-lg
-            border
-            border-gray-300
-            bg-white
+            id="mobile-filter-panel"
+            role={mobileFilterOpen ? "dialog" : undefined}
+            aria-modal={mobileFilterOpen ? true : undefined}
+            aria-label={
+              mobileFilterOpen ? "Filtrar e ordenar produtos" : undefined
+            }
+            inert={!mobileFilterOpen && undefined}
+            className={`
+              fixed inset-y-0 right-0 z-50
+              flex w-[85%] max-w-85
+              flex-col overflow-hidden
+              border-l border-gray-300
+              bg-white shadow-xl
+              transition-transform duration-300 ease-in-out
 
-            md:block
-          "
+              md:static md:z-auto md:block
+              md:h-max md:w-auto md:max-w-none
+              md:rounded-lg md:border
+              md:shadow-none md:transition-none
+
+              ${mobileFilterOpen ? "translate-x-0" : "translate-x-full md:translate-x-0"}
+            `}
           >
             {/* Título */}
-            <div className="border-b border-gray-300 px-4 py-3">
+            <div className="flex items-center justify-between border-b border-gray-300 px-4 py-3">
               <h2 className="font-poppins! text-base font-semibold">
                 Filtrar por
               </h2>
+
+              <button
+                type="button"
+                onClick={() => setMobileFilterOpen(false)}
+                aria-label="Fechar filtros"
+                className="
+                  flex h-8 w-8 items-center justify-center
+                  rounded-full text-[#202020]
+                  transition-colors hover:bg-gray-100
+                  md:hidden
+                "
+              >
+                <X size={20} strokeWidth={1.5} />
+              </button>
             </div>
 
             {/* Tamanho */}
