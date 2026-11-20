@@ -288,8 +288,8 @@ const Header = () => {
               <nav className="py-4">
                 <ul className="flex flex-col font-poppins">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/masculino"
                       onClick={closeMenu}
                       className="
                         block
@@ -304,12 +304,12 @@ const Header = () => {
                       "
                     >
                       Masculino
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/feminino"
                       onClick={closeMenu}
                       className="
                         block
@@ -324,12 +324,12 @@ const Header = () => {
                       "
                     >
                       Feminino
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/novidades"
                       onClick={closeMenu}
                       className="
                         block
@@ -344,12 +344,12 @@ const Header = () => {
                       "
                     >
                       Novidades
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/essenciais"
                       onClick={closeMenu}
                       className="
                         block
@@ -363,13 +363,13 @@ const Header = () => {
                         hover:text-[#8A6A52]
                       "
                     >
-                      Essenciais
-                    </a>
+                      Essencial
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/acessorios"
                       onClick={closeMenu}
                       className="
                         block
@@ -384,23 +384,27 @@ const Header = () => {
                       "
                     >
                       Acessórios
-                    </a>
+                    </Link>
                   </li>
 
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/ofertas"
                       onClick={closeMenu}
                       className="
                         block
+                        border-b
+                        border-gray-100
                         py-3
                         text-sm
-                        font-semibold
-                        text-[#9A4A3A]
+                        font-medium
+                        transition-colors
+                        duration-300
+                        hover:text-[#8A6A52]
                       "
                     >
                       Ofertas
-                    </a>
+                    </Link>
                   </li>
                 </ul>
 

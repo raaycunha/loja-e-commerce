@@ -40,7 +40,7 @@ const footerLinks = {
     { label: "Central de ajuda" },
     { label: "Trocas e devoluções" },
     { label: "Entregas e frete" },
-    { label: "Meus pedidos" },
+    { label: "Meus pedidos", path: "/carrinho" },
   ],
 };
 
@@ -174,9 +174,9 @@ const Footer = () => {
 
             <nav aria-label="Coleções" className="flex flex-col gap-3">
               {footerLinks.shop.map((item) => (
-                <a key={item.label} href="#" className={linkStyle}>
+                <Link key={item.label} to={item.path} className={linkStyle}>
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -189,9 +189,9 @@ const Footer = () => {
 
             <nav aria-label="Institucional" className="flex flex-col gap-3">
               {footerLinks.institutional.map((item) => (
-                <a key={item.label} href="#" className={linkStyle}>
+                <Link key={item.label} to="/" className={linkStyle}>
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -204,9 +204,13 @@ const Footer = () => {
 
             <nav aria-label="Ajuda" className="flex flex-col gap-3">
               {footerLinks.help.map((item) => (
-                <a key={item.label} href="#" className={linkStyle}>
+                <Link
+                  key={item.label}
+                  to={item.path || "/"}
+                  className={linkStyle}
+                >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
